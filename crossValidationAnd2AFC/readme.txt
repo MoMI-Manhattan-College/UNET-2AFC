@@ -42,3 +42,11 @@ d) recon_signalImages_sample_unet_MSE_150_8_2_64_1dp_2AFC.mat is the same as c) 
 e) summary_unetmse_150_8_2_64_1dp_2afc.txt is a model sumary of the unet specified in a)
 f) test_pictures_Unet_MSE_150_8_2_64_1dp_2AFC.mat is the mat file containing the test images before and after reconstruction.
 g) three_pic_comparison_image_0_unet_mse_150_8_2_64_1dp_2afc.png is an image containing the original, undersampled and reconstructed versions of image 0 from the picture set
+
+
+
+Note that the code runs using modules including TensorFlow and TensorFlow Addons.
+To set up the anaconda environment to use this code, use the code 
+"conda env create -f UNET.yml" to create it using the settings from the yaml file.
+To activate this environment you can use "conda activate env2".
+"conda deactivate" can be used to return to the base environment.
