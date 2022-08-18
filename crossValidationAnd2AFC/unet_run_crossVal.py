@@ -13,13 +13,12 @@ Things that you can change in this file:
 0) Keep or remove the method that disables plots from In[0] (Imports)
 1) May want to edit filename in get_mri_images function in In[1] (Load, shuffle ...) lines 39 & 40, if mri image file stored in different folder
 2) Change the parameters in In[1](Load, shuffle ...), which include all of the hyperparameters and undersampling. Some alternative parameters are commented out.
-    Lines 45, 47, and 49 have parameters for SSIM loss, while 46, 48, and 50 have have commented out parameters for MSE loss. commented out lines 53 and 58 are suggested settings for running a quick test that the code works as intended.
+    Lines 43, 45, and 47 have parameters for SSIM loss, while 44, 46, and 48 have have commented out parameters for MSE loss. commented out lines 51 and 56 are suggested settings for running a quick test that the code works as intended.
 3a) Change qualifier label in In[2] (Qualifier is put together...) from CVMAG to something more descriptive if want to
 3b) Change unet_name in In[2] (Qualifier is put together...) if want to alter filenames of files output from cross validation function
 4) Alter parameters of kfold validation function in In[2](Qualifier is put together...), such as trying Adam instead of RMSProp
-
+5) Change the size of the training set in get_training_pic_sets at the bottom of In[1]
 """
-
 # In[0]: Imports
 import matplotlib
 #matplotlib.use('Agg') #Don't display plots, for when running in screen.
@@ -33,7 +32,6 @@ from data_prep_utils import *
 from data_post_processing_utils import *
 from sampling_utils import undersampling_operation,display_mask, get_sampling_mask
 from unet_utils import unet_architecture as get_unet_architecture, ssim_metric, k_fold_validation
-
 
 # In[1]: Load, shuffle, undersample, normalize, and plot picture data. Set parameters for unet.
 
