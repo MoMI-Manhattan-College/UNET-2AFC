@@ -49,12 +49,12 @@ loss_string="SSIM"  # Loss function name for qualifier
 metric_display_name='One Minus SSIM'  # Loss function name for convergence plot
 #metric_display_name='MSE'
 
-epochs = 150 # Number of epochs to train
+#epochs = 150 # Number of epochs to train
 epochs=1 # for quick test to see that code runs
 batch_size = 8 # Batch size for training
 acceleration_skip_number = 3 # Acceleration, specificaly is k where we skip every k lines of high frequency in kx undersampling
 # =2, 3, 4, or 5
-initial_filters = 64 # initial filters in unet
+#initial_filters = 64 # initial filters in unet
 initial_filters = 2 # for quick test to see that code runs
 dropout = 0.1 # dropout rate in u-net
 dropout_string = "1dp" # how dropout rate will be displayed in qualifier

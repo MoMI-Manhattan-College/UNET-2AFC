@@ -24,8 +24,8 @@ from tensorflow.image import ssim
 
 # utilities
 from data_prep_utils import normalize_pictures,display_original_undersampled,get_mri_images
-from data_post_processing_utils import plot_metric,display_images,get_mri_images
-from sampling_utils_110220 import undersampling_operation
+from data_post_processing_utils import plot_metric,display_images
+from sampling_utils import undersampling_operation
 
 # In[1]: Define Loss functions
 
@@ -128,7 +128,7 @@ def single_run_create_2afc_pics(unet_architecture,x,y,sampling_mask,unet_name,qu
         
     # Produce images of fully sampled and undersampled images side by side from the picture dataset
     for i in pic_indices:
-        display_original_undersampled(y_pic, x_pic, image_number = i,save_fig=True,start_file_name='output/',end_file_name='_%s_%s'%(unet_name,qualifier))
+        display_original_undersampled(y_pic, x_pic, image_number = i,save_fig=True,start_file_name='outputs/',end_file_name='_%s_%s'%(unet_name,qualifier))
 
 
     # Add channel dimension at end of different data arrays for compatibility with tensorflow

@@ -22,24 +22,24 @@ Things that you can change in this file:
 # In[0] Imports
 import matplotlib
 matplotlib.use('Agg') #Don't display plots, for when running in screen.
-from data_prep_utils_110220 import *
-from data_post_processing_110220 import *
+from data_prep_utils import *
+from data_post_processing_utils import *
 
 from tensorflow.keras.layers import Input
 from tensorflow.keras.models import Model
 # from tensorflow.keras.callbacks import ModelCheckpoint
-from sampling_utils_110220 import undersampling_operation,display_mask, sampling_mask_updated
+from sampling_utils import undersampling_operation,display_mask, get_sampling_mask
 
-from unet_unified_utils_110220 import unet_architecture as unet_architecture_u_diagram, ssim_metric, single_run_create_auc_pics
+from unet_utils import unet_architecture as unet_architecture_diagram, ssim_metric, single_run_create_2afc_pics
 
 
 # In[1]: Load, shuffle, normalize fully sampled images
 
 # Input file addresses for retrieving the train and validation data
-directory="/home/jherman/deeplearning/dataDir"
+directory="../"
 
 # Retrieves the fully sampled images from the file and normalizes the images
-mri_images = get_mri_images(name=directory+'/FLAIRVolumesSOS')
+mri_images = get_mri_images(name=directory+'/training_sample.mat')
 
 # In[2]:Specify model parameters, such as neural network hyperparameters and undersampling rate
 
@@ -48,12 +48,12 @@ loss_string="MSE" # name for loss metric in qualifier and by extension saved out
 epochs = 1 # Number of passes through entire training set in training
 batch_size = 1 # Number of images a batch contains, where each training step only uses one batch
 acceleration_skip_number = 2 # acceleration of the high frequency section of the mr kspace image (skip every acceleration_skip_number lines when sampling)
-initial_filters = 4 # number of filters in convolution layer at beginning of unet
+initial_filters = 2 # number of filters in convolution layer at beginning of unet
 dropout = 0.1 # percent of channels to drop in dropout layer during training
 dropout_string = "1dp" # how dropout level will show up in qualifier in output file names
 
 # In[3] Get mask, undersample, normalize, and split images into train set and picture set
-sampling_mask, effective_accleration = sampling_mask_updated(acceleration_skip_number,mri_images.shape[1])
+sampling_mask, effective_accleration = get_sampling_mask(acceleration_skip_number,mri_images.shape[1])
 print("The effective acceleration is, ", effective_accleration)
 # Displays the mask as an image
 display_mask(sampling_mask)
@@ -61,23 +61,23 @@ display_mask(sampling_mask)
 undersampled_images = undersampling_operation(mri_images,sampling_mask) 
 
 # split the image set into a train set and a small picture set. Currently set to include images 0 to 499 inclusive in the train set and the rest in the picture set
-x,x_pic,y,y_pic = get_training_pic_sets(mri_images,undersampled_images,train_interval = (0,500))
+x,x_pic,y,y_pic = get_training_pic_sets(mri_images,undersampled_images,train_interval = (0,100))
 
 
 
 # In[4]: Put together qualifier, specify unet_name, build neural network, and run single_run_create_auc_pics
 
 #keeping track of what's being tested (metric,epochs,batch_size,accleration,initial filters,dropout,task)
-qualifier = "%s_%s_%s_%s_%s_%s_SingleMagArtemis"%(loss_string,int(epochs),int(batch_size),int(acceleration_skip_number),int(initial_filters),dropout_string)
+qualifier = "%s_%s_%s_%s_%s_%s_2AFC"%(loss_string,int(epochs),int(batch_size),int(acceleration_skip_number),int(initial_filters),dropout_string)
 
 
 # Call unet model
 input_img = Input(shape = (mri_images.shape[1],mri_images.shape[1],1))
 
-unet_architecture=(Model(input_img, unet_architecture_u_diagram(input_img,chan=initial_filters,drop_rate=dropout)))
+unet_architecture=(Model(input_img, unet_architecture_diagram(input_img,chan=initial_filters,drop_rate=dropout)))
 
-unet_name="Unified Diagram" # also added to output file names, Unified Diagram refers to that our
+unet_name="unet" # also added to output file names, Unified Diagram refers to that our
 # latest version of the unet was based on a combination of two unet codes, one that Rachel made and one that I made
 
 # Run function to train and produce 2AFC images for unet
-single_run_create_auc_pics(unet_architecture,x,y,sampling_mask,unet_name,qualifier,test_signal_file_name=directory+"/FLAIR_NN_testing_signalImages_11_22_2020_Contrast5e-5",test_background_file_name = directory+"/FLAIR_NN_testing_backgroundImages_11_22_2020",x_pic = x_pic,y_pic = y_pic,pic_indices = list(range(len(x_pic))),loss=loss,optimizer = "RMSprop",batch_size=batch_size,epochs=epochs)
+single_run_create_2afc_pics(unet_architecture,x,y,sampling_mask,unet_name,qualifier,test_signal_file_name=directory+"/signalImages_sample",test_background_file_name = directory+"/backgroundImages_sample",x_pic = x_pic,y_pic = y_pic,pic_indices = list(range(len(x_pic))),loss=loss,optimizer = "RMSprop",batch_size=batch_size,epochs=epochs)
