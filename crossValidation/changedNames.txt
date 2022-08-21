@@ -1,6 +1,0 @@
-data_post_processing_110220.py to data_post_processing_utils.py
-data_prep_utils_110220.py to data_prep_utils.py
-sampling_utils_110220.py to sampling_utils.py
-unet_run_cross_val_mag_110220 to unet_run.py
-unet_unified_utils_110220.py to unet_utils.py
-temp_cross_val to outputs
