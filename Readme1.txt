@@ -2,9 +2,9 @@ The purpose of this folder and its contents is to train neural networks to simul
 acceleration schemes based on how easy it is to perform a signal detection task on a set of accelerated images. To do this two different paradigms of evaluating such acceleration schemes are included: 
 using image metrics such as MSE and SSIM, and using the percent correct score from people who perform 2AFC trials on signal and background images that were accelerated. The first kind involves performing 5-fold cross validation
 and averaging the NRMSE (normalized root mean squared error) and SSIM (structural similarity) across the five splits. The second kind involves training a neural network using all provided training data and then 
-using the neural network to accelerate two test sets, one is referred to as a background set because it contains images with no added signal, the signal usualy being a bright dot. The second is referred to a
-signal set,and randomly combined, since both sets are the same except that the signal set contains an added signal. This will be done using other code to be referenced seperately. The combined file will then be used to perform 2AFC
-trials, having a person going through some set number of them, each time determining which image contains the signal or dot in its center. The percentage of time answered correctly determines the percent correct score. It is better to
+using the neural network to accelerate two test sets, where one is referred to as a background set because it contains images with no added signal, (the signal usualy being a bright dot). The second is referred to a
+signal set. After both sets are produced, using seperate code that will be supplied or referenced at a later time, they will be randomly combined using just small patches centered about the signal or where the signal would be. The combined file will then be used to perform 2AFC
+trials, having a person going through some set number of them, each time determining which image contains the signal or dot in its center. The percentage of times answered correctly determines the percent correct score. It is better to
 have multiple people peform this test and to perform this test under regular conditions such as the same monitor, lighting, distance from the monitor, and after some training by performing a 2AFC trial on images with the same condition
 several times until their performance levels off, prior to performing 2AFCs on other conditions, where condition could mean different kx acceleration or loss function.
 
