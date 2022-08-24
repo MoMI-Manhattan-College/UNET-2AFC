@@ -13,7 +13,7 @@ Things that you can change in this file:
 0) Keep or remove the method that disables plots from In[0] (Imports)
 1) May want to edit filename in get_mri_images function in In[1] (Load, shuffle ...) lines 39 & 40, if mri image file stored in different folder
 2) Change the parameters in In[1](Load, shuffle ...), which include all of the hyperparameters and undersampling. Some alternative parameters are commented out.
-    Lines 43 and 45 have parameters for SSIM loss, while 44 and 46 have have commented out parameters for MSE loss. commented out lines 49 and 54 are suggested settings for running a quick test that the code works as intended.
+    Lines 43 and 45 have commented out parameters for SSIM loss, while 44 and 46 have parameters for MSE loss. commented out lines 49 and 54 are suggested settings for running a quick test that the code works as intended.
 3a) Change qualifier label in In[2] (Qualifier is put together...) from 2AFC to something more descriptive if want to
 3b) Change unet_name in In[2] (Qualifier is put together...) if want to alter filenames of files output from unet training/2AFC file generation function
 4) Alter parameters of unet training/2AFC file generation function in In[2](Qualifier is put together...), such as trying Adam instead of RMSProp
@@ -40,18 +40,18 @@ directory="../"
 mri_images = get_mri_images(name=directory+'/training_sample.mat')
 
 # Specify parameters for network and for qualifier (important in output file names) and for convergence plot labels
-loss = ssim_metric  # The loss function
-#loss = "MSE"
-loss_string="SSIM"  # Loss function name for qualifier
-#loss_string="MSE"
+#loss = ssim_metric  # The loss function
+loss = "MSE"
+#loss_string="SSIM"  # Loss function name for qualifier
+loss_string="MSE"
 
-#epochs = 150 # Number of epochs to train
-epochs=4 # for quick test to see that code runs
+epochs = 150 # Number of epochs to train
+#epochs=1 # for quick test to see that code runs
 batch_size = 8 # Batch size for training
 acceleration_skip_number = 3 # Acceleration, specificaly is k where we skip every k lines of high frequency in kx undersampling
 # =2, 3, 4, or 5
-#initial_filters = 64 # initial filters in unet
-initial_filters = 16 # for quick test to see that code runs
+initial_filters = 64 # initial filters in unet
+#initial_filters = 2 # for quick test to see that code runs
 dropout = 0.1 # dropout rate in u-net
 dropout_string = "1dp" # how dropout rate will be displayed in qualifier
 
