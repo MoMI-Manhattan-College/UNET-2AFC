@@ -15,7 +15,7 @@ creating undersampled background and signal images from a trained U-Net.
 
 The data files should be kept in the same folder as the subfolder, crossValidationAnd2AFC.  The subfolder contains all neural network related utility 
 files and runnable scripts to run as well. It also contains an "outputs" folder as a folder to collect outputs produced by the run files. 
-These are described by the "Readme2.txt" file stored within the subfolder.
+These are described by the README file stored within the subfolder.
 
 Note that the code in the subfolder runs using modules including TensorFlow and TensorFlow Addons.
 To set up the anaconda environment to use this code, use the command 
