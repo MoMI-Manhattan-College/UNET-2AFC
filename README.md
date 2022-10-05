@@ -2,7 +2,7 @@
 
 This repository contains code used in a submission to Magnetic Resonance Imaging:
 
-JD Herman JD, RE Roca, AG O'Neill, ML Wong, SG Lingala, and AR Pineda, "Task-based Assessment for Neural Networks: Evaluating Undersampled MRI Reconstructions 
+JD Herman, RE Roca, AG O'Neill, ML Wong, SG Lingala, and AR Pineda, "Task-based Assessment for Neural Networks: Evaluating Undersampled MRI Reconstructions 
 based on Human Observer Signal Detection:, Magnetic Resonance Imaging (under review) 
 
 The purpose of this folder and its contents is to train neural networks to simulate undersampled MRI for the purpose of testing a new metric based on 
