@@ -9,23 +9,25 @@ different train-validation splits of the training data
 
 Trains a neural network for producing kx undersampled versions of background and signal images for 2AFC studies. 
 
-Both files can only run if the same four support files and a folder labeled "outputs" are in the same folder. 
-
-unet_run_crossVal.py requires that the training samples are in the directory that is specified, which by default is the parent folder ("../"). 
-
-unet_run_2AFC.py also requires the signal and background image files to be contained in the specifed directory, which by default is 
+Both files can only run if the same four support files and a folder labeled "outputs" are in the same folder. unet_run_crossVal.py requires that the training samples are in the directory that is specified, which by default is the parent folder ("../"). unet_run_2AFC.py also requires the signal and background image files to be contained in the specifed directory, which by default is 
 the parent directory as well.
 
 Below is a list of the support (or utility) files:
 
 "data_post_processing_utils.py"
+
 "data_prep_utils.py"
+
 "sampling_utils.py"
+
 "unet_utils.py"
 
 A list of the provided data files is as follows:
+
 "training_sample.mat"  (for training the neural network)
+
 "backgroundImages_sample.mat" (non-accelerated test images for creating undersampled background images)
+
 "signalImages_sample.mat" (non-accelerated test images with signal for creating undersampled signal images)
 
 The output folder "outputs" is the folder that output files containing undersampled images, scores, etc. are sent to when running either of the two run files.
