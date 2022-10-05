@@ -53,7 +53,7 @@ g) three_pic_comparison_image_0_unet_mse_150_8_3_64_1dp_cvmag_split_1.png is the
 
 h) unetmse_150_8_3_64_1dp_cvmag_split1_convergence_plot_mse_loss.png is the convergence plot for the split 1 of 5 model. Note that a) through h) involve models with the same parameters. Refer to a) to get idea how to read the parameters from the file name.
 
-2)Outputs of file unet_run_2AFC.py which trains a U-Net neural network to create 2AFC files: All outputs are sent to the outputs folder.
+2) Outputs of file unet_run_2AFC.py which trains a U-Net neural network to create 2AFC files: All outputs are sent to the outputs folder.
 
 a) model_unetmse_150_8_3_64_1dp_2afc.h5 is the h5 file that stores the trained neural network model having mse loss, 1 epoch, a batch size of 1, acceleration of 2x, 4 initial filters, and 1dp means dropout rate of 0.1. unified diagram is the unet name and singlemagartemis is the task label, indicating that this is a single non-complex valued run instead of part of cross validation and that artemis was used as the computer.
 The same parameters used in 1) are used for a-g) in 2).
