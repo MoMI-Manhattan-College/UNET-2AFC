@@ -1,9 +1,9 @@
 # UNET Neural Network for Undersampled MRI and 2-AFC Studies
 
-This repository contains code used in a submission to Magnetic Resonance Imaging:
+This repository contains code used in a submission to the Journal of Medical Imaging:
 
 JD Herman, RE Roca, AG O'Neill, ML Wong, SG Lingala, and AR Pineda, "Task-based Assessment for Neural Networks: Evaluating Undersampled MRI Reconstructions 
-based on Human Observer Signal Detection:, Magnetic Resonance Imaging (under review) 
+based on Human Observer Signal Detection", Journal of Medical Imaging  (under review) 
 
 The purpose of this folder and its contents is to train neural networks to simulate undersampled MRI for the purpose of testing a new metric based on 
 a two alternative-forced choice task (2-AFC) where a person decides which of two images contain a subtle signal.  We compute both standard metrics of image quality 
